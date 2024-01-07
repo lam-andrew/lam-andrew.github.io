@@ -14,10 +14,43 @@
         <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+
+        <style>
+            body {
+                background-color: black;
+            }
+
+            main {
+                background-color: #1C1C1C;
+                margin: 10px;
+                padding: 10px;
+                border-radius: 10px;
+                box-sizing: border-box;
+                outline: 1px solid #252525; 
+                color: white;
+            }
+
+            nav {
+                background-color: #1C1C1C !important;
+                margin: 10px;
+                padding: 10px; 
+                border-radius: 10px;
+                box-sizing: border-box;
+                outline: 1px solid #252525; 
+            }
+
+            .gradient-text {
+                background-image: -webkit-linear-gradient(top, #7BE1A6, #56A375); /* Safari 5.1-6, Chrome 10-25 */
+                background-image: linear-gradient(to bottom, #7BE1A6, #56A375); /* Standard syntax */
+                -webkit-background-clip: text;
+                background-clip: text;
+                color: transparent;
+            }
+        </style>
     </head>
     <body id="page-top">
         <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+        <nav class="navbar navbar-expand-lg navbar-dark" id="sideNav">
             <a class="navbar-brand js-scroll-trigger" href="#page-top">
                 <span class="d-block d-lg-none">Andrew Lam</span>
                 <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="assets/img/AndrewLam.JPG" alt="..." /></span>
@@ -36,203 +69,206 @@
             </div>
         </nav>
         <!-- Page Content-->
-        <div class="container-fluid p-0">
-            <!-- About-->
-            <section class="resume-section" id="about">
-                <div class="resume-section-content">
-                    <h1 class="mb-0">
-                        Andrew
-                        <span class="text-primary">Lam</span>
-                    </h1>
-                    <div class="subheading mb-5">
-                        Rosemead, CA 91770 · (626) 856-9689 · 
-                        <a class="text-primary" href="mailto:andrewlam2193@gmail.com">andrewlam2193@gmail.com</a>
-                    </div>
-                    <p class="lead mb-5">Experienced in developing dynamic web applications and automation scripts. Proficient in HTML, CSS, JavaScript, Python Flask, ReactJS, and MySQL. Skilled in enhancing operational efficiency through workflow automation. Adept at collaborative problem-solving and agile methodologies. Ready to contribute skills to drive impactful results in challenging environments.</p>
-                    <div class="social-icons">
-                        <a class="social-icon" href="https://www.linkedin.com/in/andrewlam856" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                        <a class="social-icon" href="https://github.com/lam-andrew" target="_blank"><i class="fab fa-github"></i></a>
-                        <a class="social-icon" href="#!"><i class="fab fa-twitter"></i></a>
-                        <a class="social-icon" href="#!"><i class="fab fa-facebook-f"></i></a>
-                    </div>
-                </div>
-            </section>
-            <hr class="m-0" />
-            <!-- Experience-->
-            <section class="resume-section" id="experience">
-                <div class="resume-section-content">
-                    <h2 class="mb-5">Experience</h2>
-                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                        <div class="flex-grow-1">
-                            <h3 class="mb-0">Software Engineering and Automation Intern</h3>
-                            <div class="subheading mb-3">Southern California Edison</div>
-                            <p>Developed full-stack web applications (HTML, CSS, JavaScript, Python Flask, ReactJS, MySQL) for seamless database interaction and streamlined workflows. Designed data pipelines using Apache Airflow, saving 180 hours annually. Engineered efficient Python scripts, reducing colleague workload by 25%. Automated tasks with Power Automate, Excel, Office Scripts, and VBA Macros, improving operational speed by 80% and accuracy by 90%.</p>
+        <main>
+            <div class="container-fluid p-0">
+                <!-- About-->
+                <section class="resume-section" id="about">
+                    <div class="resume-section-content">
+                        <h1 class="mb-0">
+                            Andrew
+                            <span class="gradient-text">Lam</span>
+                        </h1>
+                        <div class="subheading mb-5">
+                            Rosemead, CA 91770 · (626) 856-9689 · 
+                            <a class="gradient-text" href="mailto:andrewlam2193@gmail.com">andrewlam2193@gmail.com</a>
                         </div>
-                        <div class="flex-shrink-0"><span class="text-primary">May 2023 - Present</span></div>
-                    </div>
-                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                        <div class="flex-grow-1">
-                            <h3 class="mb-0">Coding Instructor</h3>
-                            <div class="subheading mb-3">Code Ninjas</div>
-                            <p>Delivered interactive instruction in Javascript and C#, emphasizing key game development concepts. Additionally, I offered personalized support to small groups (1-5 students), ensuring close monitoring of progress and delivering detailed feedback to parents. Collaboration was a cornerstone of my role, as I effectively worked with 2-3 colleagues to establish a positive and safe learning environment. During this experience, I honed proficiency in the Unity Game Engine, showcasing scripting skills and integrating diverse assets such as 3D models, textures, and audio files for comprehensive game development.</p>
+                        <p class="lead mb-5">Experienced in developing dynamic web applications and automation scripts. Proficient in HTML, CSS, JavaScript, Python Flask, ReactJS, and MySQL. Skilled in enhancing operational efficiency through workflow automation. Adept at collaborative problem-solving and agile methodologies. Ready to contribute skills to drive impactful results in challenging environments.</p>
+                        <div class="social-icons">
+                            <a class="social-icon" href="https://www.linkedin.com/in/andrewlam856" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                            <a class="social-icon" href="https://github.com/lam-andrew" target="_blank"><i class="fab fa-github"></i></a>
+                            <a class="social-icon" href="#!"><i class="fab fa-twitter"></i></a>
+                            <a class="social-icon" href="#!"><i class="fab fa-facebook-f"></i></a>
                         </div>
-                        <div class="flex-shrink-0"><span class="text-primary">January 2022 - May 2023</span></div>
                     </div>
-                    <div class="d-flex flex-column flex-md-row justify-content-between">
-                        <div class="flex-grow-1">
-                            <h3 class="mb-0">AT&T Summer Learning Academy Externship</h3>
-                            <div class="subheading mb-3">AT&T</div>
-                            <p>Engaged in a comprehensive 4-week program focused on enhancing professional development and exploring diverse career fields. Throughout this experience, I actively participated in online workshops and attended live seminars, immersing myself in valuable insights related to career and self-development. This initiative equipped me with a well-rounded understanding of various professional pathways and honed essential skills for personal growth in the ever-evolving landscape of career development.</p>
+                </section>
+                <hr class="m-0" />
+                <!-- Experience-->
+                <section class="resume-section" id="experience">
+                    <div class="resume-section-content">
+                        <h2 class="mb-5">Experience</h2>
+                        <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                            <div class="flex-grow-1">
+                                <h3 class="mb-0">Software Engineering and Automation Intern</h3>
+                                <div class="subheading mb-3">Southern California Edison</div>
+                                <p>Developed full-stack web applications (HTML, CSS, JavaScript, Python Flask, ReactJS, MySQL) for seamless database interaction and streamlined workflows. Designed data pipelines using Apache Airflow, saving 180 hours annually. Engineered efficient Python scripts, reducing colleague workload by 25%. Automated tasks with Power Automate, Excel, Office Scripts, and VBA Macros, improving operational speed by 80% and accuracy by 90%.</p>
+                            </div>
+                            <div class="flex-shrink-0"><span class="gradient-text">May 2023 - Present</span></div>
                         </div>
-                        <div class="flex-shrink-0"><span class="text-primary">June 2020 - July 2020</span></div>
-                    </div>
-                </div>
-            </section>
-            <hr class="m-0" />
-            <!-- Projects -->
-            <section class="resume-section" id="projects">
-                <div class="resume-section-content">
-                    <h2 class="mb-5">Projects</h2>
-                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                        <div class="flex-grow-1">
-                            <h3 class="mb-0">Personalized Music Recommender System</h3>
-                            <div class="subheading mb-3">Software Engineering, Cloud Services, Machine Learning</div>
-                            <p>Led a team of four in creating a collaborative music recommender app. Utilized Azure Web Services, Functions, and CosmosDB for scalable, serverless computing, and efficient database access. Engineered a recommendation system with advanced algorithms and content-based filtering for personalized song suggestions based on user input tags. Integrated Spotify API to enhance user interaction and improve recommendation accuracy.</p>
+                        <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                            <div class="flex-grow-1">
+                                <h3 class="mb-0">Coding Instructor</h3>
+                                <div class="subheading mb-3">Code Ninjas</div>
+                                <p>Delivered interactive instruction in Javascript and C#, emphasizing key game development concepts. Additionally, I offered personalized support to small groups (1-5 students), ensuring close monitoring of progress and delivering detailed feedback to parents. Collaboration was a cornerstone of my role, as I effectively worked with 2-3 colleagues to establish a positive and safe learning environment. During this experience, I honed proficiency in the Unity Game Engine, showcasing scripting skills and integrating diverse assets such as 3D models, textures, and audio files for comprehensive game development.</p>
+                            </div>
+                            <div class="flex-shrink-0"><span class="gradient-text">January 2022 - May 2023</span></div>
                         </div>
-                        <div class="flex-shrink-0"><span class="text-primary">Azure, Python, ReactJS</span></div>
-                    </div>
-                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                        <div class="flex-grow-1">
-                            <h3 class="mb-0">Feed Me - Mobile Application</h3>
-                            <div class="subheading mb-3">Mobile Application Development</div>
-                            <p>Created and launched the mobile app "Feed Me" using Dart and the Flutter framework, allowing users to explore restaurants through a swipe-based interface. Implemented user authentication features with Flutter and Dart for privacy and data security. Integrated seamlessly with a backend database for storing and retrieving user profiles, preferences, and restaurant information.</p>
+                        <div class="d-flex flex-column flex-md-row justify-content-between">
+                            <div class="flex-grow-1">
+                                <h3 class="mb-0">AT&T Summer Learning Academy Externship</h3>
+                                <div class="subheading mb-3">AT&T</div>
+                                <p>Engaged in a comprehensive 4-week program focused on enhancing professional development and exploring diverse career fields. Throughout this experience, I actively participated in online workshops and attended live seminars, immersing myself in valuable insights related to career and self-development. This initiative equipped me with a well-rounded understanding of various professional pathways and honed essential skills for personal growth in the ever-evolving landscape of career development.</p>
+                            </div>
+                            <div class="flex-shrink-0"><span class="gradient-text">June 2020 - July 2020</span></div>
                         </div>
-                        <div class="flex-shrink-0"><span class="text-primary">Flutter, Dart, Firebase</span></div>
                     </div>
-                </div>
-            </section>
-            <hr class="m-0" />
-            <!-- Education-->
-            <section class="resume-section" id="education">
-                <div class="resume-section-content">
-                    <h2 class="mb-5">Education</h2>
-                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                        <div class="flex-grow-1">
-                            <h3 class="mb-0">California State Polytechnic University Pomona</h3>
-                            <div class="subheading mb-3">Bachelor of Science</div>
-                            <div>Computer Science - Software Enginering Track</div>
-                            <p>GPA: 3.91</p>
+                </section>
+                <hr class="m-0" />
+                <!-- Projects -->
+                <section class="resume-section" id="projects">
+                    <div class="resume-section-content">
+                        <h2 class="mb-5">Projects</h2>
+                        <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                            <div class="flex-grow-1">
+                                <h3 class="mb-0">Personalized Music Recommender System</h3>
+                                <div class="subheading mb-3">Software Engineering, Cloud Services, Machine Learning</div>
+                                <p>Led a team of four in creating a collaborative music recommender app. Utilized Azure Web Services, Functions, and CosmosDB for scalable, serverless computing, and efficient database access. Engineered a recommendation system with advanced algorithms and content-based filtering for personalized song suggestions based on user input tags. Integrated Spotify API to enhance user interaction and improve recommendation accuracy.</p>
+                            </div>
+                            <div class="flex-shrink-0"><span class="gradient-text">Azure, Python, ReactJS</span></div>
                         </div>
-                        <div class="flex-shrink-0"><span class="text-primary">August 2020 - May 2024</span></div>
-                    </div>
-                    <div class="d-flex flex-column flex-md-row justify-content-between">
-                        <div class="flex-grow-1">
-                            <h3 class="mb-0">San Gabriel High School</h3>
-                            <div class="subheading mb-3">High School Diploma</div>
-                            <p>GPA: 3.8</p>
+                        <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                            <div class="flex-grow-1">
+                                <h3 class="mb-0">Feed Me - Mobile Application</h3>
+                                <div class="subheading mb-3">Mobile Application Development</div>
+                                <p>Created and launched the mobile app "Feed Me" using Dart and the Flutter framework, allowing users to explore restaurants through a swipe-based interface. Implemented user authentication features with Flutter and Dart for privacy and data security. Integrated seamlessly with a backend database for storing and retrieving user profiles, preferences, and restaurant information.</p>
+                            </div>
+                            <div class="flex-shrink-0"><span class="gradient-text">Flutter, Dart, Firebase</span></div>
                         </div>
-                        <div class="flex-shrink-0"><span class="text-primary">August 2016 - May 2020</span></div>
                     </div>
-                </div>
-            </section>
-            <hr class="m-0" />
-            <!-- Skills-->
-            <section class="resume-section" id="skills">
-                <div class="resume-section-content">
-                    <h2 class="mb-5">Skills</h2>
-                    <div class="subheading mb-3">Programming Languages & Tools</div>
-                    <ul class="list-inline dev-icons">
-                        <li class="list-inline-item"><i class="fab fa-python"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-html5"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-css3-alt"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-js-square"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-react"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-node-js"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-java"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-docker"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-github"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-git"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-npm"></i></li>
-                        <li class="list-inline-item"><i class="fas fa-database"></i></li>
-                    </ul>
-                    <div class="subheading mb-3">Workflow</div>
-                    <ul class="fa-ul mb-0">
-                        <li>
-                            <span class="fa-li"><i class="fas fa-check"></i></span>
-                            Mobile-First, Responsive Design
-                        </li>
-                        <li>
-                            <span class="fa-li"><i class="fas fa-check"></i></span>
-                            Cross Browser Testing & Debugging
-                        </li>
-                        <li>
-                            <span class="fa-li"><i class="fas fa-check"></i></span>
-                            Cross Functional Teams
-                        </li>
-                        <li>
-                            <span class="fa-li"><i class="fas fa-check"></i></span>
-                            Agile Development & Scrum
-                        </li>
-                    </ul>
-                </div>
-            </section>
-            <hr class="m-0" />
-            <!-- Interests-->
-            <section class="resume-section" id="interests">
-                <div class="resume-section-content">
-                    <h2 class="mb-5">Interests</h2>
-                    <p>Beyond the lines of code, I find balance and joy on the tennis court, badminton court, or scaling rock walls. My love for the digital world is complemented by hands-on hobbies – tinkering with gadgets, building intricate structures, and crafting solutions to everyday challenges. This blend of physical and creative pursuits fuels my curiosity and keeps me energized.</p>
-                    <p class="mb-0">In the constantly evolving world of technology, I thrive on staying at the forefront. Exploring the latest tech trends isn't just a hobby; it's my passion. Let's dive into conversations about our tech experiences and the fascinating developments shaping the field. I'm eager to connect with like-minded individuals who share a genuine enthusiasm for software and technology. Together, we can navigate this exciting journey of innovation and discovery.</p>
-                </div>
-            </section>
-            <hr class="m-0" />
-            <!-- Awards-->
-            <!-- <section class="resume-section" id="awards">
-                <div class="resume-section-content">
-                    <h2 class="mb-5">Awards & Certifications</h2>
-                    <ul class="fa-ul mb-0">
-                        <li>
-                            <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-                            Google Analytics Certified Developer
-                        </li>
-                        <li>
-                            <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-                            Mobile Web Specialist - Google Certification
-                        </li>
-                        <li>
-                            <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-                            1
-                            <sup>st</sup>
-                            Place - University of Colorado Boulder - Emerging Tech Competition 2009
-                        </li>
-                        <li>
-                            <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-                            1
-                            <sup>st</sup>
-                            Place - University of Colorado Boulder - Adobe Creative Jam 2008 (UI Design Category)
-                        </li>
-                        <li>
-                            <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-                            2
-                            <sup>nd</sup>
-                            Place - University of Colorado Boulder - Emerging Tech Competition 2008
-                        </li>
-                        <li>
-                            <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-                            1
-                            <sup>st</sup>
-                            Place - James Buchanan High School - Hackathon 2006
-                        </li>
-                        <li>
-                            <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-                            3
-                            <sup>rd</sup>
-                            Place - James Buchanan High School - Hackathon 2005
-                        </li>
-                    </ul>
-                </div>
-            </section> -->
-        </div>
+                </section>
+                <hr class="m-0" />
+                <!-- Education-->
+                <section class="resume-section" id="education">
+                    <div class="resume-section-content">
+                        <h2 class="mb-5">Education</h2>
+                        <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                            <div class="flex-grow-1">
+                                <h3 class="mb-0">California State Polytechnic University Pomona</h3>
+                                <div class="subheading mb-3">Bachelor of Science</div>
+                                <div>Computer Science - Software Enginering Track</div>
+                                <p>GPA: 3.91</p>
+                            </div>
+                            <div class="flex-shrink-0"><span class="gradient-text">August 2020 - May 2024</span></div>
+                        </div>
+                        <div class="d-flex flex-column flex-md-row justify-content-between">
+                            <div class="flex-grow-1">
+                                <h3 class="mb-0">San Gabriel High School</h3>
+                                <div class="subheading mb-3">High School Diploma</div>
+                                <p>GPA: 3.8</p>
+                            </div>
+                            <div class="flex-shrink-0"><span class="gradient-text">August 2016 - May 2020</span></div>
+                        </div>
+                    </div>
+                </section>
+                <hr class="m-0" />
+                <!-- Skills-->
+                <section class="resume-section" id="skills">
+                    <div class="resume-section-content">
+                        <h2 class="mb-5">Skills</h2>
+                        <div class="subheading mb-3">Programming Languages & Tools</div>
+                        <ul class="list-inline dev-icons">
+                            <li class="list-inline-item"><i class="fab fa-python"></i></li>
+                            <li class="list-inline-item"><i class="fab fa-html5"></i></li>
+                            <li class="list-inline-item"><i class="fab fa-css3-alt"></i></li>
+                            <li class="list-inline-item"><i class="fab fa-js-square"></i></li>
+                            <li class="list-inline-item"><i class="fab fa-react"></i></li>
+                            <li class="list-inline-item"><i class="fab fa-node-js"></i></li>
+                            <li class="list-inline-item"><i class="fab fa-java"></i></li>
+                            <li class="list-inline-item"><i class="fab fa-docker"></i></li>
+                            <li class="list-inline-item"><i class="fab fa-github"></i></li>
+                            <li class="list-inline-item"><i class="fab fa-git"></i></li>
+                            <li class="list-inline-item"><i class="fab fa-npm"></i></li>
+                            <li class="list-inline-item"><i class="fas fa-database"></i></li>
+                        </ul>
+                        <div class="subheading mb-3">Workflow</div>
+                        <ul class="fa-ul mb-0">
+                            <li>
+                                <span class="fa-li"><i class="fas fa-check"></i></span>
+                                Mobile-First, Responsive Design
+                            </li>
+                            <li>
+                                <span class="fa-li"><i class="fas fa-check"></i></span>
+                                Cross Browser Testing & Debugging
+                            </li>
+                            <li>
+                                <span class="fa-li"><i class="fas fa-check"></i></span>
+                                Cross Functional Teams
+                            </li>
+                            <li>
+                                <span class="fa-li"><i class="fas fa-check"></i></span>
+                                Agile Development & Scrum
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+                <hr class="m-0" />
+                <!-- Interests-->
+                <section class="resume-section" id="interests">
+                    <div class="resume-section-content">
+                        <h2 class="mb-5">Interests</h2>
+                        <p>Beyond the lines of code, I find balance and joy on the tennis court, badminton court, or scaling rock walls. My love for the digital world is complemented by hands-on hobbies – tinkering with gadgets, building intricate structures, and crafting solutions to everyday challenges. This blend of physical and creative pursuits fuels my curiosity and keeps me energized.</p>
+                        <p class="mb-0">In the constantly evolving world of technology, I thrive on staying at the forefront. Exploring the latest tech trends isn't just a hobby; it's my passion. Let's dive into conversations about our tech experiences and the fascinating developments shaping the field. I'm eager to connect with like-minded individuals who share a genuine enthusiasm for software and technology. Together, we can navigate this exciting journey of innovation and discovery.</p>
+                    </div>
+                </section>
+                <hr class="m-0" />
+                <!-- Awards-->
+                <!-- <section class="resume-section" id="awards">
+                    <div class="resume-section-content">
+                        <h2 class="mb-5">Awards & Certifications</h2>
+                        <ul class="fa-ul mb-0">
+                            <li>
+                                <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
+                                Google Analytics Certified Developer
+                            </li>
+                            <li>
+                                <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
+                                Mobile Web Specialist - Google Certification
+                            </li>
+                            <li>
+                                <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
+                                1
+                                <sup>st</sup>
+                                Place - University of Colorado Boulder - Emerging Tech Competition 2009
+                            </li>
+                            <li>
+                                <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
+                                1
+                                <sup>st</sup>
+                                Place - University of Colorado Boulder - Adobe Creative Jam 2008 (UI Design Category)
+                            </li>
+                            <li>
+                                <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
+                                2
+                                <sup>nd</sup>
+                                Place - University of Colorado Boulder - Emerging Tech Competition 2008
+                            </li>
+                            <li>
+                                <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
+                                1
+                                <sup>st</sup>
+                                Place - James Buchanan High School - Hackathon 2006
+                            </li>
+                            <li>
+                                <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
+                                3
+                                <sup>rd</sup>
+                                Place - James Buchanan High School - Hackathon 2005
+                            </li>
+                        </ul>
+                    </div>
+                </section> -->
+            </div>
+        </main>
+        
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
