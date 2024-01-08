@@ -10891,7 +10891,6 @@ p.lead {
     display: flex;
     flex-direction: column;
     width: 16.5rem;
-    height: 100vh;
   }
   #sideNav .navbar-brand {
     display: flex;
@@ -10921,6 +10920,13 @@ p.lead {
     display: block;
   }
 }
+
+@media (max-width: 991px) {
+  #sideNav {
+    height: 10% !important;
+  }
+}
+
 .social-icons .social-icon {
   display: inline-flex;
   align-items: center;
@@ -10937,7 +10943,7 @@ p.lead {
   margin-right: 0;
 }
 .social-icons .social-icon:hover {
-  background-color: #73939c;
+  background-color: #56A375;
 }
 
 .dev-icons {
