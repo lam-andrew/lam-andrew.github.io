@@ -10,11 +10,15 @@
 window.addEventListener('DOMContentLoaded', event => {
 
     // Activate Bootstrap scrollspy on the main nav element
+    const mainElement = document.querySelector('main');
     const sideNav = document.body.querySelector('#sideNav');
     if (sideNav) {
-        new bootstrap.ScrollSpy(document.body, {
+        new bootstrap.ScrollSpy(mainElement, {
             target: '#sideNav',
             rootMargin: '0px 0px -40%',
+        });
+        document.addEventListener('scroll', () => {
+            console.log('Scroll position:', window.scrollY);
         });
     };
 
