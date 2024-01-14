@@ -17,9 +17,6 @@ window.addEventListener('DOMContentLoaded', event => {
             target: '#sideNav',
             rootMargin: '0px 0px -40%',
         });
-        document.addEventListener('scroll', () => {
-            console.log('Scroll position:', window.scrollY);
-        });
     };
 
     // Collapse responsive navbar when toggler is visible
