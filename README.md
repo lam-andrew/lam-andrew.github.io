@@ -1,2 +1,3 @@
 # lam-andrew.github.io
-Andrew Lam's Personal Portfolio hosted on GitHub pages
+My Personal Portfolio hosted on GitHub pages
+Link: andrewlam.tech
