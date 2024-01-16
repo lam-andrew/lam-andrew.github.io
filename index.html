@@ -49,6 +49,37 @@
                 background-clip: text;
                 color: transparent;
             }
+            .project-card {
+                display: block; /* Make the anchor element a block-level element */
+                text-decoration: none; /* Remove default underline for links */
+                color: inherit; /* Inherit text color from parent */
+                background-color: #252525;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                padding: 20px;
+                border-radius: 8px;
+                cursor: pointer;
+                transition: box-shadow 0.3s ease-in-out, outline 0.3s ease-in-out;
+                outline: 1px solid transparent; /* Add transparent outline initially */
+                outline-color: #3c3c3c;
+                user-select: none; /* Prevent text selection */
+            }
+
+            .project-card:hover {
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+                outline-color: #999c9c; /* Change outline color on hover */
+                color: inherit;
+            }
+
+            /* Prevent text selection on hover */
+            body ::selection {
+                background-color: transparent;
+                color: inherit;
+            }
+
+            body ::-moz-selection {
+                background-color: transparent;
+                color: inherit;
+            }
         </style>
     </head>
     <body id="page-top">
@@ -134,22 +165,26 @@
                 <section class="resume-section" id="projects">
                     <div class="resume-section-content">
                         <h2 class="mb-5 overlap overlap__back" style="color: #fff;">Projects</h2>
-                        <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                            <div class="flex-grow-1">
-                                <h3 class="mb-0">Personalized Music Recommender System</h3>
-                                <div class="subheading mb-3">Software Engineering, Cloud Services, Machine Learning</div>
-                                <p>Led a team of four in creating a collaborative music recommender app. Utilized Azure Web Services, Functions, and CosmosDB for scalable, serverless computing, and efficient database access. Engineered a recommendation system with advanced algorithms and content-based filtering for personalized song suggestions based on user input tags. Integrated Spotify API to enhance user interaction and improve recommendation accuracy.</p>
+                        <a href="https://github.com/CS4800-03-PERS1-BE-NICK/Backend" target="_blank" class="project-card mb-5">
+                            <div class="d-flex flex-column flex-md-row justify-content-between">
+                                <div class="flex-grow-1">
+                                    <h3 class="mb-0">Music Recommender System</h3>
+                                    <div class="subheading mb-3">Software Engineering, Cloud Services, Machine Learning</div>
+                                    <p>Led a team of four in creating a collaborative music recommender app. Utilized Azure Web Services, Functions, and CosmosDB for scalable, serverless computing, and efficient database access. Engineered a recommendation system with advanced algorithms and content-based filtering for personalized song suggestions based on user input tags. Integrated Spotify API to enhance user interaction and improve recommendation accuracy.</p>
+                                </div>
+                                <div class="flex-shrink-0"><span class="gradient-text">Azure, Python, ReactJS</span></div>
                             </div>
-                            <div class="flex-shrink-0"><span class="gradient-text">Azure, Python, ReactJS</span></div>
-                        </div>
-                        <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                            <div class="flex-grow-1">
-                                <h3 class="mb-0">Feed Me - Mobile Application</h3>
-                                <div class="subheading mb-3">Mobile Application Development</div>
-                                <p>Created and launched the mobile app "Feed Me" using Dart and the Flutter framework, allowing users to explore restaurants through a swipe-based interface. Implemented user authentication features with Flutter and Dart for privacy and data security. Integrated seamlessly with a backend database for storing and retrieving user profiles, preferences, and restaurant information.</p>
+                        </a>
+                        <a href="https://github.com/lam-andrew/FeedMe_Mobile" target="_blank" class="project-card mb-5">
+                            <div class="d-flex flex-column flex-md-row justify-content-between">
+                                <div class="flex-grow-1">
+                                    <h3 class="mb-0">Feed Me - Mobile Application</h3>
+                                    <div class="subheading mb-3">Mobile Application Development</div>
+                                    <p>Created and launched the mobile app "Feed Me" using Dart and the Flutter framework, allowing users to explore restaurants through a swipe-based interface. Implemented user authentication features with Flutter and Dart for privacy and data security. Integrated seamlessly with a backend database for storing and retrieving user profiles, preferences, and restaurant information.</p>
+                                </div>
+                                <div class="flex-shrink-0"><span class="gradient-text">Flutter, Dart, Firebase</span></div>
                             </div>
-                            <div class="flex-shrink-0"><span class="gradient-text">Flutter, Dart, Firebase</span></div>
-                        </div>
+                        </a>
                     </div>
                 </section>
                 <hr class="m-0" />
@@ -162,6 +197,7 @@
                                 <h3 class="mb-0">California State Polytechnic University Pomona</h3>
                                 <div class="subheading mb-3">Bachelor of Science</div>
                                 <div>Computer Science - Software Enginering Track</div>
+                                <div>Honors - President's List  |  Dean's list</div>
                                 <p>GPA: 3.91</p>
                             </div>
                             <div class="flex-shrink-0"><span class="gradient-text">August 2020 - May 2024</span></div>
