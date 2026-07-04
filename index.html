@@ -1,360 +1,770 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Andrew Lam</title>
-        <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
-        <!-- Font Awesome icons (free version)-->
-        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-        <!-- Google fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
-        <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Andrew Lam · Software &amp; AI Engineer</title>
+<meta name="description" content="Andrew Lam is a software and AI engineer in Los Angeles building GenAI systems, RAG platforms, and graph-based digital twins for the power grid, and the maker behind Nuppin Studio." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --cream: #fdf9f2;
+  --paper: #ffffff;
+  --ink: #2e2620;
+  --muted: #7d7064;
+  --line: #eae1d3;
 
-        <style>
-            body {
-                background-color: black;
-            }
+  --accent: #e85d2a;
+  --accent-soft: #fbe9df;
+  --matcha: #55893f;
+  --matcha-soft: #e9f1e0;
+  --berry: #4d5fd1;
+  --berry-soft: #e7eafc;
+  --butter: #ffd65c;
 
-            main {
-                background-color: #1C1C1C;
-                margin: 10px;
-                padding: 10px;
-                border-radius: 10px;
-                box-sizing: border-box;
-                outline: 1px solid #252525; 
-                color: white;
-                height: 97.7vh;
-                overflow-y: auto;
-            }
+  --display: "Bricolage Grotesque", "Segoe UI", sans-serif;
+  --body: "Instrument Sans", "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, monospace;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 17px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+::selection { background: var(--butter); color: var(--ink); }
 
-            nav {
-                background-color: #1C1C1C !important;
-                margin: 10px;
-                padding: 10px; 
-                border-radius: 10px;
-                box-sizing: border-box;
-                outline: 1px solid #252525;
-                height: 97.7vh !important;
-            }
+/* ---------- progress thread (signature) ---------- */
+#thread {
+  position: fixed;
+  left: 38px; top: 0;
+  height: 100vh; width: 2px;
+  z-index: 5;
+  pointer-events: none;
+}
+#thread .track { position: absolute; inset: 0; background: var(--line); }
+#thread .fill {
+  position: absolute; top: 0; left: 0; width: 100%; height: 0%;
+  background: linear-gradient(to bottom, var(--accent), var(--matcha));
+  transition: height 0.08s linear;
+}
+#thread .bead {
+  position: absolute; left: 50%;
+  width: 10px; height: 10px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--cream);
+  box-shadow: 0 0 0 1.5px var(--accent);
+}
+@media (max-width: 860px) { #thread { display: none; } }
 
-            .gradient-text {
-                background-image: -webkit-linear-gradient(top, #7BE1A6, #56A375);
-                background-image: linear-gradient(to bottom, #7BE1A6, #56A375);
-                -webkit-background-clip: text;
-                background-clip: text;
-                color: transparent;
-            }
-            .project-card {
-                display: block; /* Make the anchor element a block-level element */
-                text-decoration: none; /* Remove default underline for links */
-                color: inherit; /* Inherit text color from parent */
-                background-color: #252525;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                padding: 20px;
-                border-radius: 8px;
-                cursor: pointer;
-                transition: box-shadow 0.3s ease-in-out, outline 0.3s ease-in-out;
-                outline: 1px solid transparent; /* Add transparent outline initially */
-                outline-color: #3c3c3c;
-                user-select: none; /* Prevent text selection */
-            }
+/* ---------- nav ---------- */
+nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 10;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 40px;
+  background: rgba(253, 249, 242, 0.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+nav .logo {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--ink);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+nav .logo em { font-style: normal; color: var(--accent); }
+nav ul { display: flex; gap: 26px; list-style: none; }
+nav ul a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 14.5px;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+nav ul a:hover, nav ul a:focus-visible { color: var(--accent); }
+@media (max-width: 640px) {
+  nav { padding: 14px 20px; }
+  nav ul { gap: 16px; }
+  nav ul li:nth-child(n+4) { display: none; }
+}
 
-            .project-card:hover {
-                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-                outline-color: #999c9c; /* Change outline color on hover */
-                color: inherit;
-            }
+/* ---------- layout ---------- */
+main { max-width: 1060px; margin: 0 auto; padding: 0 88px 0 108px; }
+@media (max-width: 860px) { main { padding: 0 24px; } }
+section { padding: 108px 0 28px; }
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 22px;
+}
+.eyebrow::after { content: ""; height: 1px; width: 56px; background: var(--accent); opacity: 0.4; }
+h2 {
+  font-family: var(--display);
+  font-size: clamp(30px, 4.4vw, 44px);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  margin-bottom: 30px;
+}
+h2 .hl { position: relative; white-space: nowrap; z-index: 0; }
+h2 .hl::after {
+  content: "";
+  position: absolute; left: -2px; right: -2px; bottom: 3px;
+  height: 9px;
+  background: var(--butter);
+  opacity: 0.65;
+  border-radius: 3px;
+  z-index: -1;
+}
 
-            /* Prevent text selection on hover */
-            body ::selection {
-                background-color: transparent;
-                color: inherit;
-            }
+/* ---------- hero ---------- */
+#hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: center;
+  position: relative;
+  padding-top: 130px;
+}
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.4;
+  pointer-events: none;
+  animation: drift 18s ease-in-out infinite alternate;
+}
+.blob.b1 { width: 360px; height: 360px; background: var(--accent-soft); top: 10%; right: 2%; }
+.blob.b2 { width: 280px; height: 280px; background: var(--matcha-soft); bottom: 12%; left: 18%; animation-delay: -7s; }
+@keyframes drift {
+  from { transform: translate(0, 0); }
+  to { transform: translate(26px, -22px); }
+}
+#hero .kicker {
+  font-family: var(--mono);
+  color: var(--muted);
+  font-size: 13.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  position: relative;
+}
+#hero .kicker .dot { color: var(--accent); }
+h1 {
+  font-family: var(--display);
+  font-size: clamp(56px, 10.5vw, 128px);
+  font-weight: 700;
+  line-height: 0.99;
+  letter-spacing: -0.025em;
+  position: relative;
+}
+h1 .slice { display: block; overflow: hidden; }
+h1 .slice span {
+  display: block;
+  transform: translateY(110%);
+  animation: rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+h1 .slice:nth-child(2) span { animation-delay: 0.14s; color: var(--accent); }
+@keyframes rise { to { transform: translateY(0); } }
+#hero .lede {
+  margin-top: 28px;
+  max-width: 600px;
+  font-size: 19px;
+  color: var(--muted);
+  position: relative;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.5s forwards;
+}
+#hero .lede strong { color: var(--ink); font-weight: 600; }
+#hero .cta-row {
+  display: flex; gap: 16px; margin-top: 38px; flex-wrap: wrap;
+  position: relative;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.7s forwards;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.btn {
+  font-family: var(--body);
+  font-weight: 600;
+  font-size: 15.5px;
+  padding: 13px 28px;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: transform 0.18s, box-shadow 0.18s, background 0.18s;
+}
+.btn.primary { background: var(--accent); color: #fff; }
+.btn.primary:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(232, 93, 42, 0.3); }
+.btn.ghost { border: 1.5px solid var(--line); color: var(--ink); background: var(--paper); }
+.btn.ghost:hover { transform: translateY(-2px); border-color: var(--ink); }
+#hero .scroll-hint {
+  position: absolute; bottom: 32px; left: 0;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.2em;
+  animation: bob 2.4s ease-in-out infinite;
+}
+@keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(7px); } }
 
-            body ::-moz-selection {
-                background-color: transparent;
-                color: inherit;
-            }
-        </style>
-    </head>
-    <body id="page-top">
-        <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-dark" id="sideNav">
-            <a class="navbar-brand js-scroll-trigger" href="#about">
-                <div style="display: inline-flex;">
-                    <h2 class="d-block d-lg-none overlap overlap__back" style="padding-right: 8px;">Andrew</h2>
-                    <h2 class="d-block d-lg-none overlap overlap__back" style="color: #66C590;">Lam</h2>
-                </div>
-                <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="assets/img/andrew_seattle.JPG" alt="..." /></span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">About</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#experience">Experience</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#projects">Projects</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#education">Education</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#skills">Skills</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#interests">Interests</a></li>
-                    <!-- <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#awards">Awards</a></li> -->
-                </ul>
-            </div>
-        </nav>
-        <!-- Page Content-->
-        <main>
-            <div class="container-fluid p-0">
-                <!-- About-->
-                <section class="resume-section" id="about">
-                    <div class="resume-section-content">
-                        <div style="display: inline-flex;">
-                            <h1 class="mb-0 overlap overlap__back" style="padding-right: 8px;">Andrew</h1>
-                            <h1 class="overlap overlap__back" style="color: #66C590;">Lam</h1>
-                        </div>
-                        <div class="subheading mb-5">
-                            Rosemead, CA 91770 · (626) 856-9689 · 
-                            <a class="gradient-text" href="mailto:andrewlam2193@gmail.com">andrewlam2193@gmail.com</a>
-                        </div>
-                        <p class="lead mb-4">Hello! I'm Andrew Lam, currently studying Computer Science at Cal Poly Pomona, with a focus on software engineering, web development, and data engineering. I enjoy working with code and creating applications using languages like Python and JavaScript.</p>
-                        <p class="lead mb-5">I am experienced in developing dynamic web applications and automation scripts. Proficient in HTML, CSS, JavaScript, Python Flask, ReactJS, and MySQL. Skilled in enhancing operational efficiency through workflow automation. Adept at collaborative problem-solving and agile methodologies. Ready to contribute skills to drive impactful results in challenging environments.</p>
-                        <div class="social-icons">
-                            <a class="social-icon" href="https://www.linkedin.com/in/andrewlam856" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                            <a class="social-icon" href="https://github.com/lam-andrew" target="_blank"><i class="fab fa-github"></i></a>
-                            <!-- <a class="social-icon" href="#!"><i class="fab fa-twitter"></i></a>
-                            <a class="social-icon" href="#!"><i class="fab fa-facebook-f"></i></a> -->
-                        </div>
-                    </div>
-                </section>
-                <hr class="m-0" />
-                <!-- Experience-->
-                <section class="resume-section" id="experience">
-                    <div class="resume-section-content">
-                        <h2 class="mb-5 overlap overlap__back" style="color: #fff;">Experience</h2>
-                        <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                            <div class="flex-grow-1">
-                                <h3 class="mb-0">Software Engineering and Automation Intern</h3>
-                                <div class="subheading mb-3">Southern California Edison</div>
-                                <p>Developed full-stack web applications (HTML, CSS, JavaScript, Python Flask, ReactJS, MySQL) for seamless database interaction and streamlined workflows. Designed data pipelines using Apache Airflow, saving 180 hours annually. Engineered efficient Python scripts, reducing colleague workload by 25%. Automated tasks with Power Automate, Excel, Office Scripts, and VBA Macros, improving operational speed by 80% and accuracy by 90%.</p>
-                            </div>
-                            <div class="flex-shrink-0"><span class="gradient-text">May 2023 - Present</span></div>
-                        </div>
-                        <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                            <div class="flex-grow-1">
-                                <h3 class="mb-0">Coding Instructor</h3>
-                                <div class="subheading mb-3">Code Ninjas</div>
-                                <p>Delivered interactive instruction in Javascript and C#, emphasizing key game development concepts. Additionally, I offered personalized support to small groups (1-5 students), ensuring close monitoring of progress and delivering detailed feedback to parents. Collaboration was a cornerstone of my role, as I effectively worked with 2-3 colleagues to establish a positive and safe learning environment. During this experience, I honed proficiency in the Unity Game Engine, showcasing scripting skills and integrating diverse assets such as 3D models, textures, and audio files for comprehensive game development.</p>
-                            </div>
-                            <div class="flex-shrink-0"><span class="gradient-text">January 2022 - May 2023</span></div>
-                        </div>
-                        <div class="d-flex flex-column flex-md-row justify-content-between">
-                            <div class="flex-grow-1">
-                                <h3 class="mb-0">AT&T Summer Learning Academy Externship</h3>
-                                <div class="subheading mb-3">AT&T</div>
-                                <p>Engaged in a comprehensive 4-week program focused on enhancing professional development and exploring diverse career fields. Throughout this experience, I actively participated in online workshops and attended live seminars, immersing myself in valuable insights related to career and self-development. This initiative equipped me with a well-rounded understanding of various professional pathways and honed essential skills for personal growth in the ever-evolving landscape of career development.</p>
-                            </div>
-                            <div class="flex-shrink-0"><span class="gradient-text">June 2020 - July 2020</span></div>
-                        </div>
-                    </div>
-                </section>
-                <hr class="m-0" />
-                <!-- Projects -->
-                <section class="resume-section" id="projects">
-                    <div class="resume-section-content">
-                        <h2 class="mb-5 overlap overlap__back" style="color: #fff;">Projects</h2>
-                        <a href="https://secure-chat-app-ui-c1870d80b3f7.herokuapp.com" target="_blank" class="project-card mb-5">
-                            <div class="d-flex flex-column flex-md-row justify-content-between">
-                                <div class="flex-grow-1">
-                                    <h3 class="mb-0">Secure Chat Application</h3>
-                                    <div class="subheading mb-3">Real-time Communication, Security, Web Development</div>
-                                    <p>Developed a secure, real-time chat application enabling users to communicate in chat rooms. Implemented using React (TypeScript) for the frontend and Python Flask for the backend. Features secure WebSocket connections and user authentication via Gmail. Utilizes Heroku Postgres for data persistence, ensuring secure and efficient storage of messages and user profiles. Deployed on Heroku, facilitating easy management and access.</p>
-                                </div>
-                                <div class="flex-shrink-0"><span class="gradient-text">Heroku, Python, ReactTSX, WebSockets</span></div>
-                            </div>
-                        </a>
-                        <a href="https://nextsteptracking-a1816f8659c4.herokuapp.com/" target="_blank" class="project-card mb-5">
-                            <div class="d-flex flex-column flex-md-row justify-content-between">
-                                <div class="flex-grow-1">
-                                    <h3 class="mb-0">Job Application Status Tracker</h3>
-                                    <div class="subheading mb-3">Web Development, Database Management, API Integration</div>
-                                    <p>Engineered a web application for tracking job application statuses, simplifying the job search process. The frontend is built with React, providing a user-friendly interface, while the backend API, developed in Python Flask, handles interactions with the database and external services. Features include comprehensive job application management and integration with OpenAI services. Utilizes PostgreSQL for database management, deployed with a focus on enhancing user experience in job tracking.</p>
-                                </div>
-                                <div class="flex-shrink-0"><span class="gradient-text">React, Flask, PostgreSQL, OpenAI API</span></div>
-                            </div>
-                        </a>
-                        <a href="https://spotify-music-recommender-al.vercel.app/" target="_blank" class="project-card mb-5">
-                            <div class="d-flex flex-column flex-md-row justify-content-between">
-                                <div class="flex-grow-1">
-                                    <h3 class="mb-0">Spotify API Application - In Progress</h3>
-                                    <div class="subheading mb-3">Web Development - API Integration</div>
-                                    <p>A React TypeScript application that integrates with the Spotify API to offer music recommendations. It utilizes Tailwind CSS for styling and serverless functions hosted on Vercel for backend operations, including OAuth authentication and search functionality. This setup enables a seamless and responsive user experience for exploring Spotify's vast music library.</p>
-                                </div>
-                                <div class="flex-shrink-0"><span class="gradient-text">Fullstack, Spotify API, Serverless Functions</span></div>
-                            </div>
-                        </a>
-                        <a href="https://github.com/CS4800-03-PERS1-BE-NICK/Backend" target="_blank" class="project-card mb-5">
-                            <div class="d-flex flex-column flex-md-row justify-content-between">
-                                <div class="flex-grow-1">
-                                    <h3 class="mb-0">Music Recommender System</h3>
-                                    <div class="subheading mb-3">Software Engineering, Cloud Services, Machine Learning</div>
-                                    <p>Led a team of four in creating a collaborative music recommender app. Utilized Azure Web Services, Functions, and CosmosDB for scalable, serverless computing, and efficient database access. Engineered a recommendation system with advanced algorithms and content-based filtering for personalized song suggestions based on user input tags. Integrated Spotify API to enhance user interaction and improve recommendation accuracy.</p>
-                                </div>
-                                <div class="flex-shrink-0"><span class="gradient-text">Azure, Python, ReactJS</span></div>
-                            </div>
-                        </a>
-                        <a href="https://github.com/lam-andrew/FeedMe_Mobile" target="_blank" class="project-card mb-5">
-                            <div class="d-flex flex-column flex-md-row justify-content-between">
-                                <div class="flex-grow-1">
-                                    <h3 class="mb-0">Feed Me - Mobile Application</h3>
-                                    <div class="subheading mb-3">Mobile Application Development</div>
-                                    <p>Created and launched the mobile app "Feed Me" using Dart and the Flutter framework, allowing users to explore restaurants through a swipe-based interface. Implemented user authentication features with Flutter and Dart for privacy and data security. Integrated seamlessly with a backend database for storing and retrieving user profiles, preferences, and restaurant information.</p>
-                                </div>
-                                <div class="flex-shrink-0"><span class="gradient-text">Flutter, Dart, Firebase</span></div>
-                            </div>
-                        </a>
-                        <a href="https://andrewlam-react-calculator.vercel.app/" target="_blank" class="project-card mb-5">
-                            <div class="d-flex flex-column flex-md-row justify-content-between">
-                                <div class="flex-grow-1">
-                                    <h3 class="mb-0">React TSX - Calculator</h3>
-                                    <div class="subheading mb-3">UI Development with React TypeScript</div>
-                                    <p>Created and launched a simple ReactTSX calculator application</p>
-                                </div>
-                                <div class="flex-shrink-0"><span class="gradient-text">React, Typescript</span></div>
-                            </div>
-                        </a>
-                    </div>
-                </section>
-                <hr class="m-0" />
-                <!-- Education-->
-                <section class="resume-section" id="education">
-                    <div class="resume-section-content">
-                        <h2 class="mb-5 overlap overlap__back" style="color: #fff;">Education</h2>
-                        <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                            <div class="flex-grow-1">
-                                <h3 class="mb-0">California State Polytechnic University Pomona</h3>
-                                <div class="subheading mb-3">Bachelor of Science</div>
-                                <div>Computer Science - Software Enginering Track</div>
-                                <div>Honors - President's List  |  Dean's list</div>
-                                <p>GPA: 3.91</p>
-                            </div>
-                            <div class="flex-shrink-0"><span class="gradient-text">August 2020 - May 2024</span></div>
-                        </div>
-                        <div class="d-flex flex-column flex-md-row justify-content-between">
-                            <div class="flex-grow-1">
-                                <h3 class="mb-0">San Gabriel High School</h3>
-                                <div class="subheading mb-3">High School Diploma</div>
-                                <p>GPA: 3.8</p>
-                            </div>
-                            <div class="flex-shrink-0"><span class="gradient-text">August 2016 - May 2020</span></div>
-                        </div>
-                    </div>
-                </section>
-                <hr class="m-0" />
-                <!-- Skills-->
-                <section class="resume-section" id="skills">
-                    <div class="resume-section-content">
-                        <h2 class="mb-5 overlap overlap__back" style="color: #fff;">Skills</h2>
-                        <div class="subheading mb-3">Programming Languages & Tools</div>
-                        <ul class="list-inline dev-icons">
-                            <li class="list-inline-item"><i class="fab fa-python"></i></li>
-                            <li class="list-inline-item"><i class="fab fa-html5"></i></li>
-                            <li class="list-inline-item"><i class="fab fa-css3-alt"></i></li>
-                            <li class="list-inline-item"><i class="fab fa-js-square"></i></li>
-                            <li class="list-inline-item"><i class="fab fa-react"></i></li>
-                            <li class="list-inline-item"><i class="fab fa-node-js"></i></li>
-                            <li class="list-inline-item"><i class="fab fa-java"></i></li>
-                            <li class="list-inline-item"><i class="fab fa-docker"></i></li>
-                            <li class="list-inline-item"><i class="fab fa-github"></i></li>
-                            <li class="list-inline-item"><i class="fab fa-git"></i></li>
-                            <li class="list-inline-item"><i class="fab fa-npm"></i></li>
-                            <li class="list-inline-item"><i class="fas fa-database"></i></li>
-                        </ul>
-                        <div class="subheading mb-3">Workflow</div>
-                        <ul class="fa-ul mb-0">
-                            <li>
-                                <span class="fa-li"><i class="fas fa-check"></i></span>
-                                Mobile-First, Responsive Design
-                            </li>
-                            <li>
-                                <span class="fa-li"><i class="fas fa-check"></i></span>
-                                Cross Browser Testing & Debugging
-                            </li>
-                            <li>
-                                <span class="fa-li"><i class="fas fa-check"></i></span>
-                                Cross Functional Teams
-                            </li>
-                            <li>
-                                <span class="fa-li"><i class="fas fa-check"></i></span>
-                                Agile Development & Scrum
-                            </li>
-                        </ul>
-                    </div>
-                </section>
-                <hr class="m-0" />
-                <!-- Interests-->
-                <section class="resume-section" id="interests">
-                    <div class="resume-section-content">
-                        <h2 class="mb-5 overlap overlap__back" style="color: #fff;">Interests</h2>
-                        <p>Beyond coding, I play tennis, badminton, and go rock climbing. My hobbies also include tinkering, building, crafting, and staying up to date on the latest technology. This blend of physical and creative pursuits fuels my curiosity and keeps me energized. I'm eager to connect with individuals who share an interest in software and technology.</p>
-                        <p>In the constantly evolving world of technology, I thrive on staying at the forefront. Exploring the latest tech trends isn't just a hobby; it's my passion. Let's dive into conversations about our tech experiences and the fascinating developments shaping the field. I'm eager to connect with like-minded individuals who share a genuine enthusiasm for software and technology. Together, we can navigate this exciting journey of innovation and discovery.</p>
-                    </div>
-                </section>
-                <!-- <hr class="m-0" /> -->
-                <!-- Awards-->
-                <!-- <section class="resume-section" id="awards">
-                    <div class="resume-section-content">
-                        <h2 class="mb-5">Awards & Certifications</h2>
-                        <ul class="fa-ul mb-0">
-                            <li>
-                                <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-                                Google Analytics Certified Developer
-                            </li>
-                            <li>
-                                <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-                                Mobile Web Specialist - Google Certification
-                            </li>
-                            <li>
-                                <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-                                1
-                                <sup>st</sup>
-                                Place - University of Colorado Boulder - Emerging Tech Competition 2009
-                            </li>
-                            <li>
-                                <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-                                1
-                                <sup>st</sup>
-                                Place - University of Colorado Boulder - Adobe Creative Jam 2008 (UI Design Category)
-                            </li>
-                            <li>
-                                <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-                                2
-                                <sup>nd</sup>
-                                Place - University of Colorado Boulder - Emerging Tech Competition 2008
-                            </li>
-                            <li>
-                                <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-                                1
-                                <sup>st</sup>
-                                Place - James Buchanan High School - Hackathon 2006
-                            </li>
-                            <li>
-                                <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-                                3
-                                <sup>rd</sup>
-                                Place - James Buchanan High School - Hackathon 2005
-                            </li>
-                        </ul>
-                    </div>
-                </section> -->
-            </div>
-        </main>
-        
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
-    </body>
+/* ---------- reveal on scroll ---------- */
+.reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.in { opacity: 1; transform: translateY(0); }
+
+/* ---------- cards base ---------- */
+.card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: 0 2px 8px rgba(46, 38, 32, 0.04);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+.card:hover {
+  transform: translateY(-4px);
+  border-color: #ddd0bd;
+  box-shadow: 0 14px 30px rgba(46, 38, 32, 0.09);
+}
+
+/* ---------- about ---------- */
+#about .cols { display: grid; grid-template-columns: 1.5fr 1fr; gap: 44px; }
+@media (max-width: 780px) { #about .cols { grid-template-columns: 1fr; } }
+#about p { color: var(--muted); margin-bottom: 18px; }
+#about p strong { color: var(--ink); font-weight: 600; }
+.fact-card { padding: 26px 28px; height: fit-content; }
+.fact-card dt {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-top: 18px;
+}
+.fact-card dt:first-child { margin-top: 0; }
+.fact-card dd { font-weight: 600; font-size: 15.5px; margin-top: 3px; }
+
+/* ---------- experience ---------- */
+.org-intro { color: var(--muted); font-size: 15.5px; margin: -12px 0 26px; max-width: 640px; }
+.xp { border-left: 2px solid var(--line); padding-left: 34px; position: relative; }
+.xp-item { position: relative; padding-bottom: 44px; }
+.xp-item:last-child { padding-bottom: 8px; }
+.xp-item::before {
+  content: "";
+  position: absolute; left: -42px; top: 7px;
+  width: 13px; height: 13px; border-radius: 50%;
+  background: var(--accent);
+  border: 3px solid var(--cream);
+  box-shadow: 0 0 0 1.5px var(--accent);
+}
+.xp-item .when {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+}
+.xp-item h3 { font-family: var(--display); font-size: 23px; font-weight: 600; margin: 6px 0 0; }
+.xp-item .org { color: var(--muted); font-weight: 500; font-size: 15px; margin-bottom: 12px; }
+.xp-item ul { list-style: none; }
+.xp-item li {
+  color: var(--muted);
+  padding-left: 22px;
+  position: relative;
+  margin-bottom: 8px;
+  font-size: 16px;
+}
+.xp-item li::before {
+  content: "●";
+  position: absolute; left: 0; top: 1px;
+  font-size: 9px;
+  color: var(--matcha);
+}
+
+/* ---------- projects ---------- */
+.proj-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+@media (max-width: 780px) { .proj-grid { grid-template-columns: 1fr; } }
+.proj { padding: 28px; display: flex; flex-direction: column; }
+.proj.featured { grid-column: 1 / -1; background: linear-gradient(150deg, #fffdf9, var(--paper) 55%); }
+.proj .tag-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+.proj .tag {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  font-weight: 500;
+  padding: 4px 11px;
+  border-radius: 999px;
+  letter-spacing: 0.02em;
+}
+.tag.t-accent { background: var(--accent-soft); color: #c14513; }
+.tag.t-matcha { background: var(--matcha-soft); color: var(--matcha); }
+.tag.t-berry { background: var(--berry-soft); color: var(--berry); }
+.proj h3 { font-family: var(--display); font-size: 24px; font-weight: 600; margin-bottom: 10px; }
+.proj p { color: var(--muted); font-size: 15.5px; flex: 1; }
+.proj .links { margin-top: 20px; display: flex; gap: 20px; }
+.proj .links a {
+  font-family: var(--mono);
+  font-size: 13.5px;
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1.5px solid transparent;
+  transition: border-color 0.2s;
+}
+.proj .links a:hover { border-color: var(--accent); }
+.status {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: var(--matcha);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-bottom: 14px;
+}
+.status .pulse {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--matcha);
+  animation: pulse 1.8s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.25; } }
+
+/* ---------- education ---------- */
+.edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+@media (max-width: 780px) { .edu-grid { grid-template-columns: 1fr; } }
+.edu { padding: 28px; }
+.edu .school { font-family: var(--display); font-size: 21px; font-weight: 600; }
+.edu .degree { color: var(--accent); font-weight: 600; font-size: 15.5px; margin: 4px 0 2px; }
+.edu .when { font-family: var(--mono); font-size: 13px; color: var(--muted); }
+.edu p { color: var(--muted); font-size: 15px; margin-top: 14px; }
+
+/* ---------- skills ---------- */
+.skill-groups { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+@media (max-width: 780px) { .skill-groups { grid-template-columns: 1fr; } }
+.skill-group { padding: 24px 28px; }
+.skill-group h3 {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+.chips { display: flex; flex-wrap: wrap; gap: 9px; }
+.chip {
+  font-size: 14px;
+  font-weight: 500;
+  padding: 7px 15px;
+  border-radius: 999px;
+  background: var(--cream);
+  border: 1px solid var(--line);
+  transition: border-color 0.2s;
+}
+.chip:hover { border-color: var(--accent); }
+.chip.star { background: var(--accent-soft); border-color: #f2c9b4; color: #b23f15; font-weight: 600; }
+
+/* ---------- beyond ---------- */
+#beyond .maker {
+  padding: 36px;
+  background:
+    radial-gradient(circle at 92% 6%, var(--accent-soft), transparent 38%),
+    var(--paper);
+}
+#beyond .maker h3 { font-family: var(--display); font-size: 28px; font-weight: 700; margin-bottom: 12px; }
+#beyond .maker h3 span { color: var(--accent); }
+#beyond .maker p { color: var(--muted); margin-bottom: 14px; }
+#beyond .maker .links { display: flex; gap: 22px; flex-wrap: wrap; margin-top: 18px; }
+#beyond .maker .links a {
+  font-family: var(--mono);
+  font-size: 13.5px;
+  color: var(--accent);
+  text-decoration: none;
+}
+#beyond .maker .links a:hover { text-decoration: underline; }
+#beyond .interests { margin-top: 26px; }
+#beyond .interests h4 {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 14px;
+}
+#beyond .interest-chips { display: flex; flex-wrap: wrap; gap: 9px; }
+#beyond .interest-chips span {
+  font-size: 14px;
+  font-weight: 500;
+  padding: 7px 15px;
+  border-radius: 999px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+}
+
+/* ---------- contact ---------- */
+#contact { padding-bottom: 60px; }
+#contact .big {
+  font-family: var(--display);
+  font-size: clamp(34px, 6vw, 60px);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  max-width: 740px;
+}
+#contact .big a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 4px solid var(--butter);
+  transition: border-color 0.2s;
+}
+#contact .big a:hover { border-color: var(--accent); }
+#contact .socials { display: flex; gap: 14px; margin-top: 40px; flex-wrap: wrap; }
+#contact .socials a {
+  font-family: var(--mono);
+  font-size: 13.5px;
+  color: var(--ink);
+  text-decoration: none;
+  padding: 9px 22px;
+  border-radius: 999px;
+  border: 1.5px solid var(--line);
+  background: var(--paper);
+  transition: border-color 0.2s, transform 0.18s;
+}
+#contact .socials a:hover { border-color: var(--accent); transform: translateY(-2px); }
+footer {
+  border-top: 1px solid var(--line);
+  padding: 26px 0 34px;
+  font-family: var(--mono);
+  font-size: 12.5px;
+  color: var(--muted);
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  html { scroll-behavior: auto; }
+  h1 .slice span { transform: none; }
+  #hero .lede, #hero .cta-row { opacity: 1; }
+  .reveal { opacity: 1; transform: none; }
+}
+</style>
+</head>
+<body>
+
+<div id="thread" aria-hidden="true">
+  <div class="track"></div>
+  <div class="fill"></div>
+  <div class="bead" style="top: 0%"></div>
+</div>
+
+<nav>
+  <a class="logo" href="#hero">andrew<em>.</em>lam</a>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#beyond">Beyond</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<main>
+
+<section id="hero">
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <p class="kicker">Los Angeles, CA <span class="dot">·</span> Software &amp; AI Engineer <span class="dot">·</span> Maker</p>
+  <h1>
+    <span class="slice"><span>Andrew</span></span>
+    <span class="slice"><span>Lam</span></span>
+  </h1>
+  <p class="lede">I build <strong>AI systems and software for the power grid</strong>: RAG chatbots, GenAI infrastructure, and graph-based digital twins at Southern California Edison. Off the clock, I run <strong>Nuppin Studio</strong>, a small 3D-printing and design studio.</p>
+  <div class="cta-row">
+    <a class="btn primary" href="#projects">View projects</a>
+    <a class="btn ghost" href="#contact">Get in touch</a>
+  </div>
+  <div class="scroll-hint">SCROLL ↓</div>
+</section>
+
+<section id="about">
+  <p class="eyebrow reveal">01 · About</p>
+  <h2 class="reveal">Software and AI engineering, <span class="hl">grid-scale</span></h2>
+  <div class="cols">
+    <div class="reveal">
+      <p>I'm a software and AI engineer at <strong>Southern California Edison</strong>, one of the largest electric utilities in the country. My work sits at the intersection of software engineering and applied AI: building <strong>retrieval-augmented (RAG) chatbots</strong> over confidential internal knowledge, standing up <strong>on-prem GenAI infrastructure</strong>, and modeling the grid as a <strong>graph-based digital twin</strong> in Neo4j.</p>
+      <p>I like leading and architecting projects end to end, from the data model to the interface engineers actually use in the field. Working next to critical infrastructure means I care as much about security and reliability as I do about shipping fast.</p>
+      <p>Outside of work I'm finishing a <strong>Master of Software Engineering at Penn State</strong>, and I run <strong>Nuppin Studio</strong>, a design and 3D-printing studio making modern objects for the home and desk. The through line: I like building complete things, from the model to the pipeline to the object in your hand.</p>
+    </div>
+    <dl class="fact-card card reveal">
+      <dt>Currently</dt>
+      <dd>Data Engineer, Specialist at SCE (software &amp; AI engineering)</dd>
+      <dt>Focus</dt>
+      <dd>GenAI, RAG, agents, and graph digital twins</dd>
+      <dt>Studying</dt>
+      <dd>M.S. Software Engineering, Penn State</dd>
+      <dt>Building</dt>
+      <dd>SAGE, an on-prem personal AI assistant</dd>
+      <dt>Making</dt>
+      <dd>Nuppin Studio · 3D-printed home goods</dd>
+      <dt>Based in</dt>
+      <dd>Greater Los Angeles, California</dd>
+    </dl>
+  </div>
+</section>
+
+<section id="experience">
+  <p class="eyebrow reveal">02 · Experience</p>
+  <h2 class="reveal">Where I've worked</h2>
+  <p class="org-intro reveal">Southern California Edison · Rosemead, CA. Progressed through three roles over three years at one of the largest electric utilities in the United States.</p>
+  <div class="xp">
+    <div class="xp-item reveal">
+      <span class="when">Jun 2026 - Present</span>
+      <h3>Data Engineer, Specialist</h3>
+      <p class="org">Southern California Edison</p>
+      <ul>
+        <li>Architected and led <strong>Network Topology</strong>, a migration of grid network state from legacy methods to a Neo4j graph topology rendered on an interactive map, giving engineers real-time path analysis across 800+ nodes and 1,400+ links and saving an estimated $1.6M in engineering hours and operational costs.</li>
+        <li>Delivered planning and design features on Network Topology: network path building, a sandbox mode for modeling equipment additions and removals, and real-time equipment health and alarm signals.</li>
+        <li>Built an <strong>on-prem AI system</strong>: a retrieval-augmented (RAG) chatbot connected to confidential internal documentation, enabling operations staff to ask questions and receive well-sourced answers quickly, and providing early AI-assisted triage of incidents on the grid.</li>
+        <li>Continued to lead and architect software and AI initiatives, using GitHub Copilot to accelerate delivery of scalable, maintainable systems.</li>
+      </ul>
+    </div>
+    <div class="xp-item reveal">
+      <span class="when">May 2024 - Jun 2026</span>
+      <h3>Application Developer, Associate Specialist</h3>
+      <p class="org">Southern California Edison</p>
+      <ul>
+        <li>Led a cross-functional team of 4 developers to build an automated Nokia device configuration system, streamlining file generation for 100+ internal users and cutting setup time significantly.</li>
+        <li>Designed responsive front-end interfaces with modern JavaScript frameworks, improving usability and adoption across 100+ stakeholders.</li>
+        <li>Advised contractor development teams on architecture and code quality, ensuring scalable, maintainable solutions delivered on schedule.</li>
+        <li>Laid the groundwork for the Network Topology and on-prem AI initiatives later expanded in the Specialist role.</li>
+      </ul>
+    </div>
+    <div class="xp-item reveal">
+      <span class="when">May 2023 - Jun 2024</span>
+      <h3>Software and Application Engineering Intern</h3>
+      <p class="org">Southern California Edison</p>
+      <ul>
+        <li>Partnered with technology vendors and SCE business units to deliver a full-stack platform for order tracking and procurement, accelerating dispatch operations and reducing delays.</li>
+        <li>Built automated data pipelines with Apache Airflow to improve data reliability, saving 365+ engineering hours annually and reducing costs by $36,000.</li>
+        <li>Engineered efficient Python automation scripts using a range of libraries, leading to a 25% reduction in colleague workload.</li>
+      </ul>
+    </div>
+    <div class="xp-item reveal">
+      <span class="when">Jan 2022 - May 2023</span>
+      <h3>Developer</h3>
+      <p class="org">Code Ninjas</p>
+      <ul>
+        <li>Led collaborative development sessions in JavaScript and C# using Unity, providing guidance on scripting and troubleshooting.</li>
+        <li>Set development goals, tracked progress, and maintained structured coding workflows.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <p class="eyebrow reveal">03 · Projects</p>
+  <h2 class="reveal">Things I've built</h2>
+  <div class="proj-grid">
+
+    <article class="proj card featured reveal">
+      <span class="status"><span class="pulse"></span>In active development</span>
+      <div class="tag-row">
+        <span class="tag t-accent">Python</span><span class="tag t-berry">PostgreSQL + pgvector</span><span class="tag t-matcha">MCP</span><span class="tag t-accent">Local LLMs</span><span class="tag t-berry">RAG</span>
+      </div>
+      <h3>SAGE · Personal AI Assistant</h3>
+      <p>An on-premises, privacy-first AI assistant. SAGE pairs a local LLM with long-term memory in Postgres + pgvector, tool integrations built on the Model Context Protocol, and a plain-markdown knowledge base (raw notes distilled into a personal wiki) so the assistant's context grows with me instead of living in someone else's cloud.</p>
+    </article>
+
+    <article class="proj card reveal">
+      <div class="tag-row">
+        <span class="tag t-accent">React</span><span class="tag t-berry">FastAPI</span><span class="tag t-matcha">OpenAI</span><span class="tag t-accent">AWS</span>
+      </div>
+      <h3>Perfect Date Planner</h3>
+      <p>An AI-powered web app that generates personalized date itineraries from budget, location, and preferences using the OpenAI and Google Places APIs. React front end with Google Autocomplete, FastAPI backend, containerized and shipped to AWS with a GitHub Actions CI/CD pipeline.</p>
+      <div class="links">
+        <a href="https://github.com/lam-andrew/ai-date-planner" target="_blank" rel="noopener">Code ↗</a>
+      </div>
+    </article>
+
+    <article class="proj card reveal">
+      <div class="tag-row">
+        <span class="tag t-berry">TypeScript</span><span class="tag t-accent">Python</span><span class="tag t-matcha">Security</span>
+      </div>
+      <h3>Secure Chat Application</h3>
+      <p>A full-stack client-server chat application with an emphasis on secure communication: encrypted messaging between a TypeScript UI and a Python API.</p>
+      <div class="links">
+        <a href="https://github.com/lam-andrew/secure-chat-app-ui" target="_blank" rel="noopener">Code ↗</a>
+      </div>
+    </article>
+
+    <article class="proj card reveal">
+      <div class="tag-row">
+        <span class="tag t-berry">React</span><span class="tag t-accent">Python</span><span class="tag t-matcha">Azure</span><span class="tag t-berry">Spotify API</span>
+      </div>
+      <h3>Music Recommender System</h3>
+      <p>A collaborative web app that recommends songs using content-based filtering and Spotify API integration, deployed on Azure Functions and CosmosDB for real-time recommendations.</p>
+      <div class="links">
+        <a href="https://github.com/lam-andrew/spotify-music-recommender" target="_blank" rel="noopener">Code ↗</a>
+      </div>
+    </article>
+
+    <article class="proj card reveal">
+      <div class="tag-row">
+        <span class="tag t-berry">React</span><span class="tag t-accent">Python / Flask</span><span class="tag t-matcha">PostgreSQL</span><span class="tag t-berry">OpenAI</span>
+      </div>
+      <h3>Job Application Status Tracker</h3>
+      <p>A web app that simplifies the job search by tracking application statuses end to end. React front end over a Python Flask API handling the database and external services, with comprehensive application management, OpenAI integration, and PostgreSQL for storage.</p>
+      <div class="links">
+        <a href="https://github.com/lam-andrew/job-app-tracker-ui" target="_blank" rel="noopener">Code ↗</a>
+      </div>
+    </article>
+
+    <article class="proj card reveal">
+      <div class="tag-row">
+        <span class="tag t-berry">Flutter</span><span class="tag t-accent">Dart</span><span class="tag t-matcha">Mobile</span>
+      </div>
+      <h3>Feed Me · Mobile App</h3>
+      <p>A mobile app built and launched with Dart and Flutter that lets users explore restaurants through a swipe-based interface. Includes user authentication for privacy and data security, and integrates with a backend database for storing user profiles, preferences, and restaurants.</p>
+      <div class="links">
+        <a href="https://github.com/lam-andrew/FeedMe_Mobile" target="_blank" rel="noopener">Code ↗</a>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<section id="education">
+  <p class="eyebrow reveal">04 · Education</p>
+  <h2 class="reveal">Where I've studied</h2>
+  <div class="edu-grid">
+    <div class="edu card reveal">
+      <div class="school">Penn State University</div>
+      <div class="degree">M.S. Software Engineering</div>
+      <div class="when">Spring 2025 - Expected May 2026</div>
+      <p>Graduate coursework in machine vision, data mining, reinforcement learning, and web security, completed part-time alongside full-time engineering work.</p>
+    </div>
+    <div class="edu card reveal">
+      <div class="school">Cal Poly Pomona</div>
+      <div class="degree">B.S. Computer Science · Summa Cum Laude</div>
+      <div class="when">2020 - 2024 · GPA 3.90</div>
+      <p>Foundation in systems, algorithms, and software engineering, with hands-on work from assembly programming to full-stack applications.</p>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <p class="eyebrow reveal">05 · Skills</p>
+  <h2 class="reveal">What I work with</h2>
+  <div class="skill-groups">
+    <div class="skill-group card reveal">
+      <h3>AI &amp; GenAI</h3>
+      <div class="chips">
+        <span class="chip star">LLMs</span><span class="chip star">RAG</span><span class="chip star">AI agents</span><span class="chip star">Model Context Protocol</span><span class="chip">GPU / model serving</span><span class="chip">vLLM</span><span class="chip">pgvector / vector search</span><span class="chip">GitHub Copilot</span>
+      </div>
+    </div>
+    <div class="skill-group card reveal">
+      <h3>Languages</h3>
+      <div class="chips">
+        <span class="chip">Python</span><span class="chip">TypeScript</span><span class="chip">JavaScript</span><span class="chip">Java</span><span class="chip">SQL</span><span class="chip">HTML / CSS</span>
+      </div>
+    </div>
+    <div class="skill-group card reveal">
+      <h3>Frameworks &amp; Data</h3>
+      <div class="chips">
+        <span class="chip">React</span><span class="chip">FastAPI</span><span class="chip">Flask</span><span class="chip">Celery</span><span class="chip">Apache Airflow</span><span class="chip">Redis</span><span class="chip">Neo4j</span><span class="chip">PostgreSQL</span><span class="chip">MySQL</span><span class="chip">Oracle</span>
+      </div>
+    </div>
+    <div class="skill-group card reveal">
+      <h3>Infrastructure &amp; Cloud</h3>
+      <div class="chips">
+        <span class="chip">Docker</span><span class="chip">Kubernetes</span><span class="chip">Jenkins</span><span class="chip">Git</span><span class="chip">AWS</span><span class="chip">Google Cloud</span><span class="chip">Azure</span><span class="chip">Blender</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="beyond">
+  <p class="eyebrow reveal">06 · Beyond the keyboard</p>
+  <h2 class="reveal">The <span class="hl">maker</span> side</h2>
+  <div class="maker card reveal">
+    <h3>Nuppin <span>Studio</span></h3>
+    <p>A small design and 3D-printing studio based in California, creating modern objects for your home, desk, and everyday life. From minimalist trays and vases to playful desk pieces, every item is made to order with a focus on clean, intentional design.</p>
+    <p>The studio is also growing a collection of digital designs: downloadable files you can print yourself at home, so you can bring the designs to life on your own terms. Whether you want something handmade or something to make yourself, it's a one-person operation covering the whole pipeline: modeling in Blender, print tuning on a Bambu Lab P1S, finishing, photography, and the storefront itself.</p>
+    <div class="links">
+      <a href="https://nuppinstudio.com" target="_blank" rel="noopener">nuppinstudio.com ↗</a>
+      <a href="https://www.instagram.com/nuppinstudio" target="_blank" rel="noopener">@nuppinstudio ↗</a>
+    </div>
+  </div>
+  <div class="interests reveal">
+    <h4>Off the clock</h4>
+    <div class="interest-chips">
+      <span>Reading</span><span>3D printing</span><span>Traveling</span><span>Tennis</span><span>Hiking</span><span>Snowboarding</span><span>Cafe exploration</span><span>My cats, Sumi &amp; Suki</span>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <p class="eyebrow reveal">07 · Contact</p>
+  <p class="big reveal">Have a project, an AI role, or a very specific 3D-print idea? <a href="mailto:andrewlam2193@gmail.com">Say hello.</a></p>
+  <div class="socials reveal">
+    <a href="mailto:andrewlam2193@gmail.com">Email</a>
+    <a href="https://www.linkedin.com/in/andrewlam856" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://github.com/lam-andrew" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Andrew Lam</span>
+  <span>Designed &amp; built in Los Angeles</span>
+</footer>
+
+</main>
+
+<script>
+(function () {
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  var els = document.querySelectorAll(".reveal");
+  if (reduced || !("IntersectionObserver" in window)) {
+    els.forEach(function (el) { el.classList.add("in"); });
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12 });
+    els.forEach(function (el) { io.observe(el); });
+  }
+
+  var fill = document.querySelector("#thread .fill");
+  var bead = document.querySelector("#thread .bead");
+  function updateThread() {
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - window.innerHeight;
+    var p = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+    var pct = (p * 100).toFixed(2) + "%";
+    fill.style.height = pct;
+    bead.style.top = pct;
+  }
+  if (!reduced && fill && bead) {
+    window.addEventListener("scroll", updateThread, { passive: true });
+    window.addEventListener("resize", updateThread);
+    updateThread();
+  }
+})();
+</script>
+
+</body>
 </html>
